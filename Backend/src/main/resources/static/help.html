@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Help Center - Ocean View Resort</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ===== HELP CARDS ===== */
+.help-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.help-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255,215,0,0.3);
+}
+
+.help-card h3 {
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.help-content {
+    display: none;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar">
+    <h2 style="text-align:center; color:gold;">🏨 Ocean View Resort</h2>
+    <a href="help.html">Help</a>
+    <a href="exit.html">Exit</a>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main">
+    <h1>Help & User Guide</h1>
+    <p>Follow the steps below to efficiently use the Ocean View Resort Management System.</p>
+
+    <!-- LOGIN -->
+    <div class="help-card" onclick="toggleHelp(this)">
+        <h3>🔐 User Authentication</h3>
+        <div class="help-content">
+            <p>
+                Use your registered username and password to log in securely.
+                If you are a new user, create an account before accessing the dashboard.
+            </p>
+        </div>
+    </div>
+
+    <!-- ADD RESERVATION -->
+    <div class="help-card" onclick="toggleHelp(this)">
+        <h3>🏨 Add New Reservation</h3>
+        <div class="help-content">
+            <p>
+                Navigate to the Reservation section and enter:
+                Guest Name, Address, Contact Number, Room Type,
+                Check-in Date, and Check-out Date.
+                Click "Save Reservation" to generate a unique Reservation ID.
+            </p>
+        </div>
+    </div>
+
+    <!-- VIEW RESERVATION -->
+    <div class="help-card" onclick="toggleHelp(this)">
+        <h3>📋 View Reservation Details</h3>
+        <div class="help-content">
+            <p>
+                Enter the Reservation ID in the View section
+                to retrieve complete booking information including
+                guest details and stay duration.
+            </p>
+        </div>
+    </div>
+
+    <!-- BILL -->
+    <div class="help-card" onclick="toggleHelp(this)">
+        <h3>💰 Generate & Print Bill</h3>
+        <div class="help-content">
+            <p>
+                Use the Reservation ID to calculate the total cost.
+                The system automatically computes the number of nights
+                based on check-in and check-out dates.
+                Click "Print Bill" to download or print the invoice as PDF.
+            </p>
+        </div>
+    </div>
+
+    <!-- EXIT -->
+    <div class="help-card" onclick="toggleHelp(this)">
+        <h3>🚪 Exit System</h3>
+        <div class="help-content">
+            <p>
+                Click the Exit option in the sidebar to safely log out
+                and close the management session.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function toggleHelp(element) {
+    const content = element.querySelector(".help-content");
+    content.style.display = content.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
+
+

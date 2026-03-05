@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Ocean View Resort</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>User Authentication</h2>
+
+    <!-- LOGIN SECTION -->
+    <h3 style="color:gold;">Login</h3>
+    <input id="loginUser" placeholder="Username">
+    <input type="password" id="loginPass" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="loginMessage"></p>
+
+    <hr style="margin:30px 0; border:1px solid gold;">
+
+    <!-- CREATE ACCOUNT SECTION -->
+    <h3 style="color:gold;">Create Account</h3>
+    <input id="regUser" placeholder="New Username">
+    <input type="password" id="regPass" placeholder="New Password">
+    <button onclick="register()">Create Account</button>
+    <p id="registerMessage"></p>
+
+</div>
+
+<script>
+function login(){
+    fetch(`/api/auth/login?username=${loginUser.value}&password=${loginPass.value}`,{
+        method:"POST"
+    })
+    .then(res=>res.text())
+    .then(data=>{
+        loginMessage.innerText=data;
+
+        if(data.toLowerCase().includes("successful")){
+            window.location.href="dashboard.html";
+        }
+    });
+}
+
+function register(){
+    fetch(`/api/auth/register?username=${regUser.value}&password=${regPass.value}`,{
+        method:"POST"
+    })
+    .then(res=>res.text())
+    .then(data=>{
+        registerMessage.innerText=data;
+    });
+}
+</script>
+
+</body>
+</html>
+

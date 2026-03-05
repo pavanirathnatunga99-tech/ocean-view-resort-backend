@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reservation System - Ocean View Resort</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2 style="text-align:center; color:gold;">🏨 Ocean View Resort</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="reservation-system.html">Reservations</a>
+    <a href="help.html">Help</a>
+    <a href="exit.html">Exit</a>
+</div>
+
+<div class="main">
+    <h1>Reservation Management</h1>
+
+<!-- ================= ADD RESERVATION ================= -->
+<div class="card">
+<h3>Add New Reservation</h3>
+<input id="name" placeholder="Guest Name">
+<input id="address" placeholder="Address">
+<input id="contact" placeholder="Contact Number">
+
+<select id="roomType">
+    <option value="Single">Single</option>
+    <option value="Double">Double</option>
+    <option value="Suite">Suite</option>
+</select>
+
+<label>Check-In Date</label>
+<input type="date" id="checkIn">
+
+<label>Check-Out Date</label>
+<input type="date" id="checkOut">
+
+<button onclick="reserve()">Save Reservation</button>
+<p id="reserveResult"></p>
+
+<hr style="margin:30px 0; border:1px solid gold;">
+</div>
+<!-- ================= VIEW RESERVATION ================= -->
+<div class="card">
+        <h3>View Reservation Details</h3>
+<input id="rid" placeholder="Enter Reservation ID">
+<button onclick="view()">View Details</button>
+
+<div id="details" class="card"></div>
+
+<hr style="margin:30px 0; border:1px solid gold;">
+</div>
+
+
+<!-- ================= GENERATE BILL ================= -->
+<div class="card">
+        <h3>Generate & Print Bill</h3>
+
+<input id="billId" placeholder="Enter Reservation ID">
+<button onclick="generateBill()">Generate Bill</button>
+
+<div id="billResult" class="card"></div>
+
+<button onclick="printBill()">Print Bill as PDF</button>
+
+   </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function reserve(){
+    fetch("/api/reservations",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            guestName: document.getElementById("name").value,
+            address: document.getElementById("address").value,
+            contactNumber: document.getElementById("contact").value,
+            roomType: document.getElementById("roomType").value,
+            checkIn: document.getElementById("checkIn").value,
+            checkOut: document.getElementById("checkOut").value
+        })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        reserveResult.innerText="Reservation Created. ID: "+data.reservationId;
+    });
+}
+
+// ================= VIEW RESERVATION =================
+function view(){
+    fetch("/api/reservations/"+rid.value)
+    .then(res=>res.json())
+    .then(data=>{
+        details.innerHTML=
+        "<p><b>Name:</b> "+data.guestName+"</p>"+
+        "<p><b>Address:</b> "+data.address+"</p>"+
+        "<p><b>Contact:</b> "+data.contactNumber+"</p>"+
+        "<p><b>Room:</b> "+data.roomType+"</p>"+
+        "<p><b>Check-In:</b> "+data.checkIn+"</p>"+
+        "<p><b>Check-Out:</b> "+data.checkOut+"</p>";
+    });
+}
+
+// ================= GENERATE BILL =================
+function generateBill(){
+
+    fetch("/api/reservations/"+billId.value)
+    .then(res=>res.json())
+    .then(data=>{
+
+        const checkIn = new Date(data.checkIn);
+        const checkOut = new Date(data.checkOut);
+
+        const diffTime = Math.abs(checkOut - checkIn);
+        const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        let rate = 0;
+
+        if(data.roomType === "Single") rate = 8000;
+        if(data.roomType === "Double") rate = 12000;
+        if(data.roomType === "Suite") rate = 20000;
+
+        const total = days * rate;
+
+        billResult.innerHTML =
+        "<h3>Bill Details</h3>"+
+        "<p>Guest: "+data.guestName+"</p>"+
+        "<p>Room Type: "+data.roomType+"</p>"+
+        "<p>Stayed Days: "+days+"</p>"+
+        "<p>Rate Per Night: LKR "+rate+"</p>"+
+        "<h2>Total: LKR "+total+"</h2>";
+    });
+}
+
+// ================= PRINT BILL =================
+function printBill(){
+    window.print();
+}
+
+</script>
+
+</body>
+</html>
+

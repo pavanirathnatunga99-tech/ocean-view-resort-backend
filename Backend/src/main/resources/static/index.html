@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ocean View Resort</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ===== NAVBAR ===== */
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+}
+
+.topnav a {
+    color: gold;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.topnav a:hover {
+    color: white;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 80px;
+    animation: fadeIn 1.2s ease;
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: gold;
+    color: black;
+}
+
+.btn-primary:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    border: 2px solid gold;
+    color: gold;
+}
+
+.btn-secondary:hover {
+    background: gold;
+    color: black;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
+    font-size: 14px;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(30px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<div class="topnav">
+    <div style="color:gold; font-size:20px; font-weight:bold;">
+        🏨 Ocean View Resort
+    </div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="help.html">Help</a>
+    </div>
+</div>
+
+<!-- ===== HERO SECTION ===== -->
+<div class="hero">
+    <h1>Welcome to Ocean View Resort</h1>
+<p>
+Nestled along the beautiful southern coast of Galle, Ocean View Resort offers the perfect blend of tropical charm and modern comfort. Just minutes away from golden beaches and the historic Galle Fort, our resort is your gateway to relaxation and coastal adventure.
+Wake up to the sound of the waves, enjoy breathtaking sunsets over the Indian Ocean, and experience warm Sri Lankan hospitality at its finest.
+Book your stay in Galle and discover paradise by the sea.
+</p>
+
+    <div>
+        <a href="login.html" class="btn btn-primary">Get Started</a>
+        <a href="help.html" class="btn btn-secondary">Learn More</a>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+    © 2026 Ocean View Resort | Premium Hospitality 
+</div>
+
+</body>
+</html>
+
+
+    
+    
+        
+    
