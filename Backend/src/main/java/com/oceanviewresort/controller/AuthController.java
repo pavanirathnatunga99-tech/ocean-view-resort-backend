@@ -4,6 +4,10 @@ import com.oceanviewresort.service.AuthService;
 
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller for handling authentication operations.
+ * Provides endpoints for user login and registration.
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
